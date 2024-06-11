@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { IMovie } from '@/app/movie'; // Make sure this path is correct
+import { IMovieDetails } from '@/app/dtos/movieDetails'; // Make sure this path is correct
 
 const API_KEY = '453cc599';
 
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export default function MoviePage({ params }: IProps) {
-    const [movie, setMovie] = useState<IMovie | null>(null);
+    const [movie, setMovie] = useState<IMovieDetails | null>(null);
 
     const fetchMovie = () => {
         fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${params.id}`)
