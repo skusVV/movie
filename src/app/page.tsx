@@ -20,7 +20,7 @@ export default function Home() {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const fetchMovies = (searchTerm: string, page: number) => {
-        fetch(`http://www.omdbapi.com/?s=${searchTerm}&plot=full&r=json&apikey=${API_KEY}&page=${page}&size=10`)
+        fetch(`https://www.omdbapi.com/?s=${searchTerm}&plot=full&r=json&apikey=${API_KEY}&page=${page}&size=10`)
             .then(res => res.json())
             .then(res => {
                 if (!res.Error) {
