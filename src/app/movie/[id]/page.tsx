@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { IMovieDetails } from '@/app/dtos/movieDetails'; // Make sure this path is correct
+import { IMovieDetails } from '@/app/dtos/movieDetails';
+import {setSearchTerm} from "@/app/store/movie.actions";
+import Header from "@/app/componenst/Header/Header"; // Make sure this path is correct
 
 const API_KEY = '453cc599';
 
@@ -28,35 +30,39 @@ export default function MoviePage({ params }: IProps) {
 
     return (
         <main className="container mx-auto p-6">
-            <div className="bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+            <div
+                className="bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
                 <img
                     src={movie.Poster}
                     alt={`${movie.Title} Poster`}
-                    className="w-full md:w-1/3 h-auto object-cover"
+                    className="w-full md:w-1/3 h-auto object-cover filter brightness-75 hover:brightness-100 transition duration-500"
                 />
-                <div className="p-6 md:p-8 flex-1">
-                    <h1 className="text-3xl font-bold mb-4">{movie.Title}</h1>
-                    <div className="space-y-2">
-                        <p><strong>Year:</strong> {movie.Year}</p>
-                        <p><strong>Rated:</strong> {movie.Rated}</p>
-                        <p><strong>Released:</strong> {movie.Released}</p>
-                        <p><strong>Runtime:</strong> {movie.Runtime}</p>
-                        <p><strong>Genre:</strong> {movie.Genre}</p>
-                        <p><strong>Director:</strong> {movie.Director}</p>
-                        <p><strong>Writer:</strong> {movie.Writer}</p>
-                        <p><strong>Actors:</strong> {movie.Actors}</p>
-                        <p><strong>Plot:</strong> {movie.Plot}</p>
-                        <p><strong>Language:</strong> {movie.Language}</p>
-                        <p><strong>Country:</strong> {movie.Country}</p>
-                        <p><strong>Awards:</strong> {movie.Awards}</p>
-                        <p><strong>Metascore:</strong> {movie.Metascore}</p>
-                        <p><strong>IMDb Rating:</strong> {movie.imdbRating}</p>
-                        <p><strong>IMDb Votes:</strong> {movie.imdbVotes}</p>
-                        <p><strong>Type:</strong> {movie.Type}</p>
-                        <p><strong>DVD:</strong> {movie.DVD}</p>
-                        <p><strong>BoxOffice:</strong> {movie.BoxOffice}</p>
-                        <p><strong>Production:</strong> {movie.Production}</p>
-                        <p><strong>Website:</strong> <a href={movie.Website} className="text-blue-400 hover:underline">{movie.Website}</a></p>
+                <div className="p-6 md:p-8 flex-1 space-y-4">
+                    <h1 className="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">{movie.Title}</h1>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <p><span className="font-semibold text-yellow-400">Year:</span> {movie.Year}</p>
+                        <p><span className="font-semibold text-yellow-400">Rated:</span> {movie.Rated}</p>
+                        <p><span className="font-semibold text-yellow-400">Released:</span> {movie.Released}</p>
+                        <p><span className="font-semibold text-yellow-400">Runtime:</span> {movie.Runtime}</p>
+                        <p><span className="font-semibold text-yellow-400">Genre:</span> {movie.Genre}</p>
+                        <p><span className="font-semibold text-yellow-400">Director:</span> {movie.Director}</p>
+                        <p><span className="font-semibold text-yellow-400">Writer:</span> {movie.Writer}</p>
+                        <p><span className="font-semibold text-yellow-400">Actors:</span> {movie.Actors}</p>
+                        <p className="col-span-full"><span
+                            className="font-semibold text-yellow-400">Plot:</span> {movie.Plot}</p>
+                        <p><span className="font-semibold text-yellow-400">Language:</span> {movie.Language}</p>
+                        <p><span className="font-semibold text-yellow-400">Country:</span> {movie.Country}</p>
+                        <p><span className="font-semibold text-yellow-400">Awards:</span> {movie.Awards}</p>
+                        <p><span className="font-semibold text-yellow-400">Metascore:</span> {movie.Metascore}</p>
+                        <p><span className="font-semibold text-yellow-400">IMDb Rating:</span> {movie.imdbRating}</p>
+                        <p><span className="font-semibold text-yellow-400">IMDb Votes:</span> {movie.imdbVotes}</p>
+                        <p><span className="font-semibold text-yellow-400">Type:</span> {movie.Type}</p>
+                        <p><span className="font-semibold text-yellow-400">DVD:</span> {movie.DVD}</p>
+                        <p><span className="font-semibold text-yellow-400">BoxOffice:</span> {movie.BoxOffice}</p>
+                        <p><span className="font-semibold text-yellow-400">Production:</span> {movie.Production}</p>
+                        <p><span className="font-semibold text-yellow-400">Website:</span> <a href={movie.Website}
+                                                                                              className="text-blue-400 hover:underline">{movie.Website}</a>
+                        </p>
                     </div>
                 </div>
             </div>
