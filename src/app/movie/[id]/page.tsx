@@ -12,7 +12,7 @@ export default function MoviePage({ params }: IProps) {
     const [movie, setMovie] = useState<IMovieDetails | null>(null);
 
     const fetchMovie = () => {
-        fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${params.id}`)
+        fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${params.id}`)
             .then(res => res.json())
             .then(res => {
                 setMovie(res);
