@@ -1,13 +1,11 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { IMovieDetails } from '@/app/dtos/movieDetails';
-import {setSearchTerm} from "@/app/store/movie.actions";
-import Header from "@/app/componenst/Header/Header"; // Make sure this path is correct
 
 const API_KEY = '453cc599';
 
 interface IProps {
-    params: { id: string }; // Updated the params type
+    params: { id: string };
 }
 
 export default function MoviePage({ params }: IProps) {
