@@ -1,7 +1,7 @@
 import { IMovie } from "@/app/dtos/movie";
 import { Action } from '@/app/store/movie.actions';
 
-interface State {
+export interface State {
     searchTerm: string;
     movies: IMovie[];
     totalMoviesCount: number;

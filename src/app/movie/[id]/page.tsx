@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from 'react';
 import { IMovieDetails } from '@/app/dtos/movieDetails';
+import Header from "@/app/componenst/Header/Header";
+import {setSearchTerm} from "@/app/store/movie.actions";
+import {useAppContext} from "@/app/Wrapper";
 
 const API_KEY = '453cc599';
 
@@ -9,6 +12,7 @@ interface IProps {
 }
 
 export default function MoviePage({ params }: IProps) {
+    const { state, dispatch } = useAppContext();
     const [movie, setMovie] = useState<IMovieDetails | null>(null);
 
     const fetchMovie = () => {
@@ -27,7 +31,10 @@ export default function MoviePage({ params }: IProps) {
     }
 
     return (
-        <main className="container mx-auto p-6">
+        <>
+            <Header searchTerm={state.searchTerm} setSearchTerm={(term: string) => dispatch(setSearchTerm(term))}/>
+
+            <main className="container mx-auto p-6">
             <div
                 className="bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
                 <img
@@ -65,5 +72,6 @@ export default function MoviePage({ params }: IProps) {
                 </div>
             </div>
         </main>
+        </>
     );
 }
