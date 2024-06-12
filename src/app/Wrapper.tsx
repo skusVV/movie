@@ -1,6 +1,6 @@
 "use client";
 import {useReducer, useEffect, useCallback, ReactNode, createContext, useContext, Dispatch} from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { reducer, initialState, State } from '@/app/store/movie.reducer';
 import { Action } from '@/app/store/movie.actions';
 import { debounce } from "@/app/utils";
@@ -19,14 +19,10 @@ const AppContext: any = createContext({});
 
 export function Wrapper({ children }: { children: ReactNode }) {
     const router = useRouter();
-    const pathname = usePathname();
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const fetchMovies = (searchTerm: string, page: number) => {
-        console.log('pathname', pathname)
-        if(pathname !== '/') {
-            router.replace('/');
-        }
+        router.replace('/');
         fetch(`https://www.omdbapi.com/?s=${searchTerm}&plot=full&r=json&apikey=${API_KEY}&page=${page}&size=10`)
             .then(res => res.json())
             .then(res => {
