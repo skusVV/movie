@@ -21,8 +21,11 @@ export function Wrapper({ children }: { children: ReactNode }) {
     const router = useRouter();
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const fetchMovies = (searchTerm: string, page: number) => {
-        router.replace('/');
+    const fetchMovies = (searchTerm: string, page: number, shouldRedirect = false) => {
+        if(shouldRedirect) {
+            router.replace('/');
+        }
+
         fetch(`https://www.omdbapi.com/?s=${searchTerm}&plot=full&r=json&apikey=${API_KEY}&page=${page}&size=10`)
             .then(res => res.json())
             .then(res => {
@@ -47,7 +50,7 @@ export function Wrapper({ children }: { children: ReactNode }) {
     const debouncedSearch = useCallback(debounce((query: string) => {
         dispatch(setMovies([]));
         dispatch(resetPage());
-        fetchMovies(query, 1);
+        fetchMovies(query, 1, true);
     }, DEBOUNCE_TIME), []);
 
     useEffect(() => {
